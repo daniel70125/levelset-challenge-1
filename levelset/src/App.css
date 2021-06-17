@@ -15,11 +15,13 @@
 .left-cat-box {
   border:1px solid red;
   height:20vh;
+  text-align: center;
 }
 .left-cat-box-img {
   min-height:10vh;
   max-height:15vh;
   min-width:10vw;
+  float: left;
 }
 #cat-details-img {
   min-width:25vw;

@@ -38,7 +38,6 @@ class Home extends Component {
     document.getElementById("overlay").style.display = "none";
   }
   chooseCat(e){
-    console.log(e);
     const selectedElm = JSON.parse(localStorage.getItem('cats'));
     // Add 1 to user viewcount on click
     selectedElm[e].viewCount = selectedElm[e].viewCount + 1;
@@ -60,7 +59,7 @@ class Home extends Component {
 
     // Filter array depending on search and update cats arr according
     let filteredArr = selectedElm.filter((elm) => {
-      return elm.Name.includes(e.target.value)
+      return elm.Name.toLowerCase().includes(e.target.value.toLowerCase())
     })
     this.setState({
       cats: filteredArr
@@ -79,7 +78,6 @@ class Home extends Component {
           "ownerName":this.state.selectedOwnerName === '' ? this.state.selecetdCat.ownerName : this.state.selectedOwnerName,
           "viewCount":this.state.selecetdCat.viewCount
     }
-    // console.log(selectedElm);
     localStorage.setItem('cats', JSON.stringify(selectedElm))
     window.location.reload();
   }
@@ -146,15 +144,14 @@ class Home extends Component {
     const cats = this.state.cats.map((elm, index) => {
       return <div onClick={(e) => this.chooseCat(index)} key={elm.ID} className='left-cat-box'>
         <img alt={elm.Name} className='col-sm-4, left-cat-box-img' src={elm.thumbnailUrl} />
-        <span>{elm.Name}</span>
-        <p>{elm.Birthdate}</p>
+        <span>Name: {elm.Name}</span>
+        <p className='left-box-p'>Birthdate: {elm.Birthdate}</p>
       </div>
       }
     )
     const ownerNames = this.state.cats.map((elm, index) => {
       return <option key={index} value={elm.ownerName}>{elm.ownerName}</option>
     })
-    console.log(this.state);
     return ( 
       <div className='container'>
         <h1>Cats</h1>
