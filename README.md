@@ -1,2 +1,2 @@
 # levelset-challenge-1
-First Levelset challenge 
+First Levelset coding challenge. 
